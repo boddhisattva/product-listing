@@ -53,3 +53,16 @@ App.controller("ProductAddCtrl", ['$scope', '$resource', 'Products', '$location'
   }
  };
 }]);
+
+App.controller("ProductUpdateCtrl", ['$scope', '$resource', 'Product', '$location', '$routeParams', function($scope, $resource, Product, $location, $routeParams) {
+   $scope.product = Product.get({id: $routeParams.id});
+   $scope.update = function(){
+     if ($scope.productForm.$valid){
+       Product.update($scope.product, function(){
+         $location.path('/');
+       }, function(error) {
+         console.log(error);
+      });
+     }
+   };
+}]);

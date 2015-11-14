@@ -14,6 +14,20 @@ class Api::V1::ProductsController < ApplicationController
     end
   end
 
+  def show
+    @product = Product.find(params[:id])
+    respond_with(@product.as_json)
+  end
+
+  def update
+    @product = Product.find(params[:id])
+    if @product.update_attributes(product_params)
+      render json: @product.as_json, status: :ok
+    else
+      render json: {product: @product.errors, status: :unprocessable_entity}
+    end
+  end
+
   private
 
     def product_params
