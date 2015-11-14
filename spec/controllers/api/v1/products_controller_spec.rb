@@ -8,7 +8,7 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
 
       get :index, format: 'json'
 
-      expect(json[0]['name']).to eq('Samsung Galaxy Note 2')
+      expect(json_response[0]['name']).to eq('Samsung Galaxy Note 2')
     end
 
     it "returns an OK(200) status code" do
@@ -34,7 +34,7 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
 
           post :create, product_params, format: 'json'
 
-          expect(json["status"]).to eq(200)
+          expect(json_response["status"]).to eq(200)
         end
       end
     end
@@ -53,7 +53,7 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
 
             post :create, product_params, format: 'json'
 
-            expect(json["status"]).to eq(422)
+            expect(json_response["status"]).to eq(422)
           end
         end
       end
@@ -80,7 +80,7 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
                          product: {price: 35000},
                          format: 'json'
 
-          expect(json["status"]).to eq(200)
+          expect(json_response["status"]).to eq(200)
         end
       end
     end
@@ -105,7 +105,7 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
                            product: {description: ''},
                            format: 'json'
 
-            expect(json["status"]).to eq(422)
+            expect(json_response["status"]).to eq(422)
           end
 
         end
