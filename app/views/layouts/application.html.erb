@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>ProductListing</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+<html ng-app="ProductListing">
+  <head>
+    <title >ProductListing</title>
+    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header>
+      Product Listing
+    </header>
+    <div class="container" ng-view>
+      <%= yield %>
+    </div>
+  </body>
 </html>
