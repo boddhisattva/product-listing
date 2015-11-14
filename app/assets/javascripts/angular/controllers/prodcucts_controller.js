@@ -19,15 +19,15 @@ App.config([
   '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   $routeProvider.when('/products',{
     templateUrl: 'templates/products/index.html',
-    controller: 'ProductListCtr'
+    controller: 'ProductListCtrl'
  });
   $routeProvider.when('/products/new', {
     templateUrl: 'templates/products/new.html',
-    controller: 'ProductAddCtr'
+    controller: 'ProductAddCtrl'
  });
   $routeProvider.when('/products/:id/edit', {
     templateUrl: 'templates/products/edit.html',
-    controller: "ProductUpdateCtr"
+    controller: "ProductUpdateCtrl"
  });
   $routeProvider.otherwise({
     redirectTo: '/products'
@@ -35,8 +35,21 @@ App.config([
  }
 ]);
 
-App.controller("ProductListCtr", ['$scope', '$http', '$resource', 'Products', 'Product', '$location', function($scope, $http, $resource, Products, Product, $location) {
+App.controller("ProductListCtrl", ['$scope', '$http', '$resource', 'Products', 'Product', '$location', function($scope, $http, $resource, Products, Product, $location) {
 
   $scope.products = Products.query();
 
+}]);
+
+App.controller("ProductAddCtrl", ['$scope', '$resource', 'Products', '$location', function($scope, $resource, Products, $location) {
+  $scope.product = {};
+  $scope.save = function () {
+    if ($scope.productForm.$valid){
+      Products.create({product: $scope.product}, function(){
+      $location.path('/');
+    }, function(error){
+      console.log(error);
+    });
+  }
+ };
 }]);
