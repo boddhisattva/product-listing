@@ -10,7 +10,7 @@ class Api::V1::ProductsController < ApplicationController
     if @product.save
       render json: @product.as_json, status: :ok
     else
-      render json: {product: @product.errors, status: :no_content}
+      render json: {product: @product.errors, status: :unprocessable_entity}
     end
   end
 
