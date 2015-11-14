@@ -2,6 +2,24 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::ProductsController, type: :controller do
 
+  describe '#index' do
+    it "gets a list of all the products" do
+      FactoryGirl.create(:product)
+
+      get :index, format: 'json'
+
+      expect(json[0]['name']).to eq('Samsung Galaxy Note 2')
+    end
+
+    it "returns an OK(200) status code" do
+      FactoryGirl.create(:product)
+
+      get :index, format: 'json'
+
+      expect(response.status).to eq(200)
+    end
+  end
+
   describe '#create' do
     context "product details are correctly specified" do
       context "a successful create request" do
