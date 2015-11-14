@@ -36,9 +36,7 @@ App.config([
 ]);
 
 App.controller("ProductListCtrl", ['$scope', '$http', '$resource', 'Products', 'Product', '$location', function($scope, $http, $resource, Products, Product, $location) {
-
   $scope.products = Products.query();
-
 }]);
 
 App.controller("ProductAddCtrl", ['$scope', '$resource', 'Products', '$location', function($scope, $resource, Products, $location) {
@@ -65,4 +63,16 @@ App.controller("ProductUpdateCtrl", ['$scope', '$resource', 'Product', '$locatio
       });
      }
    };
+}]);
+
+App.controller("ProductListCtrl", ['$scope', '$http', '$resource', 'Products', 'Product', '$location', function($scope, $http, $resource, Products, Product, $location) {
+  $scope.products = Products.query();
+  $scope.deleteProduct = function (productId) {
+    if (confirm("Are you sure you want to delete this product?")){
+      Product.delete({ id: productId }, function(){
+        $scope.products = Products.query();
+        $location.path('/');
+      });
+    }
+  };
 }]);
