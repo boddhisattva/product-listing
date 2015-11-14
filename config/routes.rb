@@ -1,5 +1,9 @@
 ProductListing::Application.routes.draw do
 
+  root to: "products#index"
+
+  resources :products
+
   namespace :api do
     namespace :v1 do
       resources :products
