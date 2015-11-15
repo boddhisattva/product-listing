@@ -34,7 +34,7 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
 
           post :create, product_params, format: 'json'
 
-          expect(json_response["status"]).to eq(200)
+          expect(response.status).to eq(200)
         end
       end
     end
@@ -53,7 +53,7 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
 
             post :create, product_params, format: 'json'
 
-            expect(json_response["status"]).to eq(422)
+            expect(response.status).to eq(422)
           end
         end
       end
@@ -80,7 +80,7 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
                          product: {price: 35000},
                          format: 'json'
 
-          expect(json_response["status"]).to eq(200)
+          expect(response.status).to eq(200)
         end
       end
     end
@@ -105,9 +105,8 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
                            product: {description: ''},
                            format: 'json'
 
-            expect(json_response["status"]).to eq(422)
+            expect(response.status).to eq(422)
           end
-
         end
       end
     end

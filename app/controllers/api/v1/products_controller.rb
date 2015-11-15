@@ -8,9 +8,9 @@ class Api::V1::ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      render json: {product: @product.as_json, status: 200}
+      render json: { product: @product.as_json }, status: 200
     else
-      render json: {product: @product.errors, status: 422}
+      render json: { product: @product.errors }, status: 422
     end
   end
 
@@ -22,9 +22,9 @@ class Api::V1::ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update_attributes(product_params)
-      render json: {product: @product.as_json, status: 200 }
+      render json: { product: @product.as_json }, status: 200
     else
-      render json: { product: @product.errors, status: 422 }
+      render json: { product: @product.errors }, status: 422
     end
   end
 
