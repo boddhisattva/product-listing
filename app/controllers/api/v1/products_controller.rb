@@ -31,7 +31,7 @@ class Api::V1::ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
-    render json: {status: :no_content}
+    render nothing: true, status: 204
   end
 
   private
