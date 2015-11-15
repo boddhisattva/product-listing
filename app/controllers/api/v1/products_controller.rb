@@ -1,6 +1,8 @@
 class Api::V1::ProductsController < ApplicationController
   respond_to :json
 
+  before_action :set_product, only: [:show, :update, :destroy]
+
   def index
     respond_with Product.all
   end
@@ -15,12 +17,10 @@ class Api::V1::ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
     respond_with(@product)
   end
 
   def update
-    @product = Product.find(params[:id])
     if @product.update_attributes(product_params)
       render json: { product: @product }, status: 200
     else
@@ -29,12 +29,15 @@ class Api::V1::ProductsController < ApplicationController
   end
 
   def destroy
-    @product = Product.find(params[:id])
     @product.destroy
     render nothing: true, status: 204
   end
 
   private
+
+    def set_product
+      @product = Product.find(params[:id])
+    end
 
     def product_params
       params.require(:product).permit(:name, :description, :price)
