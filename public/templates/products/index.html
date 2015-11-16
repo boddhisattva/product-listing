@@ -1,7 +1,6 @@
 <br/>
 <div class="row">
   <div class="col-md-12">
-    <a class="btn btn-primary" href="#/products/new">Create a product</a>
     <h3 class="block">Products</h3>
     <table class="table table-striped">
       <tr>
@@ -23,4 +22,15 @@
       </tr>
     </table>
   </div>
+  <br />
+  <section>
+    <a href ng-click="tab = 1">Create a product</a>
+  </section>
+</div>
+
+<div class="col-md-10" ng-show="tab === 1" ng-controller="ProductAddCtrl">
+  <form class="tab-pane active form-horizontal" id="first" name="productForm" novalidate ng-submit="save()">
+    <h3 class="block">Add new product</h3>
+    <div ng-include src="'/templates/products/_form.html'"></div>
+  </form>
 </div>
