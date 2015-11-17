@@ -48,6 +48,14 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
             expect {post :create, product_params, format: 'json'}.not_to change(Product, :count)
           end
 
+          it "returns with an appropriate error message" do
+            product_params = {product: {description: "A laptop", price: 70000}}
+
+            post :create, product_params, format: 'json'
+
+            expect(json_response['product']).to eq(["Name can't be blank"])
+          end
+
           it "returns an unprocessable entity(422) status code" do
             product_params = {product: {description: "A laptop", price: 70000}}
 
@@ -114,6 +122,16 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
                            format: 'json'
 
             expect(product.reload.description).not_to be_empty
+          end
+
+          it "returns with an appropriate error message" do
+            product = FactoryGirl.create(:product)
+
+            patch :update, id: product.id,
+                           product: {description: ''},
+                           format: 'json'
+
+            expect(json_response['product']).to eq(["Description can't be blank"])
           end
 
           it "returns an unprocessable entity(422) status code" do
