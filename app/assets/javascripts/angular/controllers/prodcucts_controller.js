@@ -1,6 +1,6 @@
 App = angular.module('ProductListing', ['ngRoute','ngResource']);
 
-App.factory('Products', ['$resource',function($resource){
+App.factory('Products', ['$resource', function($resource){
   return $resource('/api/v1/products.json', {},{
     query: { method: 'GET', isArray: true },
     create: { method: 'POST' }
@@ -20,10 +20,6 @@ App.config([
   $routeProvider.when('/products',{
     templateUrl: 'templates/products/index.html',
     controller: 'ProductListCtrl'
- });
-  $routeProvider.when('/products/new', {
-    templateUrl: 'templates/products/new.html',
-    controller: 'ProductAddCtrl'
  });
   $routeProvider.when('/products/:id/edit', {
     templateUrl: 'templates/products/edit.html',

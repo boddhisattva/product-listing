@@ -12,7 +12,7 @@ class Api::V1::ProductsController < ApplicationController
     if @product.save
       render json: { product: @product }, status: 200
     else
-      render json: { product: @product.errors }, status: 422
+      render json: { product: @product.errors.full_messages }, status: 422
     end
   end
 
@@ -24,7 +24,7 @@ class Api::V1::ProductsController < ApplicationController
     if @product.update_attributes(product_params)
       render json: { product: @product }, status: 200
     else
-      render json: { product: @product.errors }, status: 422
+      render json: { product: @product.errors.full_messages }, status: 422
     end
   end
 
