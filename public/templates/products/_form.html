@@ -15,10 +15,9 @@
 <div class="form-group" ng-class="{'has-error' : submitted && productForm.price.$invalid}">
     <label class="control-label col-md-3">price<span class="required">* </span> </label>
     <div class="col-md-4">
-        <input type="price" name="price" class="form-control" ng-model="product.price" required placeholder="e.g., 24.5"/>
+        <input type="number" name="price" class="form-control" ng-model="product.price" required placeholder="e.g., 24.5"/>
     </div>
     <p ng-show="submitted && productForm.price.$error.required" class="help-block">Price is required.</p>
-    <p ng-show="submitted && productForm.price.$error.price" class="help-block">Enter valid price</p>
 </div>
 
 <div class="form-group">
