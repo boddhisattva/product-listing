@@ -67,18 +67,17 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
   end
 
   describe '#show' do
-    it "should return details of a particular product" do
-      product = FactoryGirl.create(:product)
 
-      get :show, id: product, format: 'json'
+    let(:product) { FactoryGirl.create(:product) }
+
+    it "should return details of a particular product" do
+      get :show, id: product.id, format: 'json'
 
       expect(json_response['name']).to eq('Samsung Galaxy Note 2')
     end
 
     it "returns an OK(200) status code" do
-      product = FactoryGirl.create(:product)
-
-      get :show, id: product, format: 'json'
+      get :show, id: product.id, format: 'json'
 
       expect(response.status).to eq(200)
     end
