@@ -31,10 +31,10 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
           expect {post :create, product_params, format: 'json'}.to change(Product, :count).by(1)
         end
 
-        it "returns an OK(200) status code" do
+        it "returns an OK(201) created code" do
           post :create, product_params, format: 'json'
 
-          expect(response.status).to eq(200)
+          expect(response.status).to eq(201)
         end
       end
     end
