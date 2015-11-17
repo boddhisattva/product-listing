@@ -21,16 +21,17 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
 
   describe '#create' do
     context "product details are correctly specified" do
+
+      let(:product_params) { { product: { name: "Macbook air",
+                                          description: "A laptop",
+                                          price: 70000 } } }
+
       context "a successful create request" do
         it "increases the number of products by one" do
-          product_params = {product: {name: "Macbook air", description: "A laptop", price: 70000}}
-
           expect {post :create, product_params, format: 'json'}.to change(Product, :count).by(1)
         end
 
         it "returns an OK(200) status code" do
-          product_params = {product: {name: "Macbook air", description: "A laptop", price: 70000}}
-
           post :create, product_params, format: 'json'
 
           expect(response.status).to eq(200)
