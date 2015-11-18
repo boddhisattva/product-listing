@@ -133,15 +133,14 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
   end
 
   describe "#destroy" do
-    it "should remove the product from the database" do
-      product = FactoryGirl.create(:product)
 
+    let!(:product) { FactoryGirl.create(:product) }
+
+    it "should remove the product from the database" do
       expect {delete :destroy, id: product.id, format: 'json'}.to change(Product, :count).by(-1)
     end
 
     it "returns a no content(204) status code" do
-      product = FactoryGirl.create(:product)
-
       delete :destroy, id: product.id, format: 'json'
 
       expect(response.status).to eq(204)
