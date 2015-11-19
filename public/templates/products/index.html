@@ -11,7 +11,7 @@
       <tr ng-hide="products.length" >
         <td colspan="5">No products found, Please create one.</td>
       </tr>
-      <tr ng-show="products.length" ng-repeat="product in products">
+      <tr ng-show="products.length" ng-repeat="product in products | orderBy : '-created_at'">
         <td>{{product.name}}</td>
         <td>{{product.description}}</td>
         <td>{{product.price}}</td>
