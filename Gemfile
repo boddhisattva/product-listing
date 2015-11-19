@@ -41,6 +41,8 @@ group :development, :test do
   gem "factory_girl_rails", "4.2.0"
 end
 
+gem "codeclimate-test-reporter", group: :test, require: nil
+
 group :production do
   gem 'puma'
   gem 'rails_12factor', '0.0.2'
