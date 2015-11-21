@@ -50,4 +50,9 @@ RSpec.describe Product, type: :model do
     end
   end
 
+  describe "when price is not a number" do
+    before { @product.price = "12a3" }
+    it { should_not be_valid }
+  end
+
 end

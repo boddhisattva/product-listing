@@ -40,10 +40,10 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
     end
 
     context "product details are not correctly specified" do
-      context "product name is not passed" do
+      context "product name is not specified and price is incorrectly specified" do
 
         let(:product_params) { { product: { description: "A laptop",
-                                            price: 70000 } } }
+                                            price: "text 123" } } }
 
         context "an unsuccessful create request" do
           it "does not create a new product" do
@@ -53,7 +53,8 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
           it "returns with an appropriate error message" do
             post :create, product_params, format: 'json'
 
-            expect(json_response['product']).to eq(["Name can't be blank"])
+            expect(json_response['product']).to eq(["Name can't be blank",
+                                                    "Price is not a number"])
           end
 
           it "returns an unprocessable entity(422) status code" do
