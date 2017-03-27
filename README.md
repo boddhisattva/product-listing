@@ -1,6 +1,6 @@
 # Product Listing
 
-[![Test Coverage](https://codeclimate.com/github/boddhisattva/product-listing/badges/coverage.svg)](https://codeclimate.com/github/boddhisattva/product-listing/coverage) [![Circle CI](https://circleci.com/gh/boddhisattva/product-listing.svg?style=svg)](https://circleci.com/gh/boddhisattva/product-listing)
+[![Test Coverage](https://codeclimate.com/github/boddhisattva/product-listing/badges/coverage.svg)](https://codeclimate.com/github/boddhisattva/product-listing/coverage)
 
 <hr />
 
